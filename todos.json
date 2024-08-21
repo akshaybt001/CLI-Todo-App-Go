@@ -1,20 +1,14 @@
 [
     {
         "Title": "Buy Bread",
-        "Completed": false,
+        "Completed": true,
         "CreatedAt": "2024-08-21T17:25:30.8449949+05:30",
-        "CompletedAt": null
+        "CompletedAt": "2024-08-21T18:30:01.1642025+05:30"
     },
     {
-        "Title": "call him ",
+        "Title": "go for a walk",
         "Completed": false,
         "CreatedAt": "2024-08-21T18:24:03.4214792+05:30",
         "CompletedAt": null
-    },
-    {
-        "Title": "message her",
-        "Completed": true,
-        "CreatedAt": "2024-08-21T18:24:24.0062582+05:30",
-        "CompletedAt": "2024-08-21T18:24:48.2572696+05:30"
     }
 ]
