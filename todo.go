@@ -1,7 +1,6 @@
 package main
 
 import (
-	"errors"
 	"fmt"
 	"os"
 	"strconv"
@@ -31,9 +30,7 @@ func (todos *Todos) add(title string) {
 
 func (todes *Todos) validateIndex(index int) error {
 	if index < 0 || index >= len(*todes) {
-		err := errors.New("Invalid index")
-		fmt.Println(err)
-		return err
+		return fmt.Errorf("invalid index: %d", index)
 	}
 	return nil
 }
@@ -66,32 +63,32 @@ func (todos *Todos) toggle(index int) error {
 	return nil
 }
 
-func (todos *Todos) edit(index int,title string) error {
+func (todos *Todos) edit(index int, title string) error {
 	t := *todos
 	if err := t.validateIndex(index); err != nil {
 		return err
 	}
 
-	t[index].Title=title
+	t[index].Title = title
 
 	return nil
 }
 
-func (todos *Todos) print(){
-	table:=table.New(os.Stdout)
+func (todos *Todos) print() {
+	table := table.New(os.Stdout)
 	table.SetRowLines(true)
-	table.SetHeaders("#","Title","Completed","Created At","Completed At")
-	for index,t:=range *todos{
-		completed:="❌"
-		completedAt:=""
+	table.SetHeaders("#", "Title", "Completed", "Created At", "Completed At")
+	for index, t := range *todos {
+		completed := "❌"
+		completedAt := ""
 
-		if t.Completed{
-			completed="✅"
-			if t.CompletedAt!=nil{
-				completedAt=t.CompletedAt.Format(time.RFC1123)
+		if t.Completed {
+			completed = "✅"
+			if t.CompletedAt != nil {
+				completedAt = t.CompletedAt.Format(time.RFC1123)
 			}
 		}
-		table.AddRow(strconv.Itoa(index),t.Title,completed,t.CreatedAt.Format(time.RFC1123),completedAt)
+		table.AddRow(strconv.Itoa(index), t.Title, completed, t.CreatedAt.Format(time.RFC1123), completedAt)
 	}
 	table.Render()
 }
